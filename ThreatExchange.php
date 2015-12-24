@@ -103,6 +103,30 @@ class ThreatExchange
     }
 
     /**
+     * Call a ThreatExchange or Graph API endpoint via GET.
+     *
+     * @param string $endpoint
+     * @param array $options
+     * @return stdClass
+     */
+    public function get($endpoint, $options = [])
+    {
+        return $this->call($endpoint, "GET", $options);
+    }
+
+    /**
+     * Call a ThreatExchange or Graph API endpoint via POST.
+     *
+     * @param string $endpoint
+     * @param array $options
+     * @return stdClass
+     */
+    public function post($endpoint, $options = [])
+    {
+        return $this->call($endpoint, "POST", $options);
+    }
+
+    /**
      * Call a ThreatExchange or Graph API endpoint.
      *
      * @param string $endpoint
