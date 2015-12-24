@@ -1,0 +1,16 @@
+{
+    "name": "certly/threatexchange",
+    "description": "ThreatExchange client.",
+    "require": {
+        "guzzlehttp/guzzle": "^6.1"
+    },
+    "authors": [
+        {
+            "name": "Ian Carroll",
+            "email": "ian@certly.io"
+        }
+    ],
+    "autoload": {
+        "psr-4": { "Certly\\ThreatExchange\\": ""}
+    }
+}
