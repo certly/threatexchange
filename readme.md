@@ -28,6 +28,15 @@ $tx->call("/898557073557972/descriptors", "GET", [
 ]);
 ```
 
+You can also use GET and POST specific functions.
+
+```
+$tx = new Certly\ThreatExchange\ThreatExchange("123", "abc");
+$tx->get("/898557073557972/descriptors", [
+    "param_name" => "param_value"
+]);
+```
+
 If you want to retrieve more results, simply use the `next` function with the pagination URL returned from your previous request.
 ```
 $tx = new Certly\ThreatExchange\ThreatExchange("123", "abc");
