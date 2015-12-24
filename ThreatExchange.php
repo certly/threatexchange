@@ -32,21 +32,22 @@ class ThreatExchange
      *
      * @var string
      */
-    protected $baseUri = "https://graph.facebook.com/v2.5/";
+    protected $baseUri = 'https://graph.facebook.com/v2.5/';
 
     /**
      * Create a new ThreatExchange client.
      *
-     * @param string $appId
-     * @param string $appSecret
+     * @param string                 $appId
+     * @param string                 $appSecret
      * @param null|GuzzleHttp\Client $guzzle
+     *
      * @return void
      */
     public function __construct($appId, $appSecret, Client $guzzle = null)
     {
         $this->appId = $appId;
         $this->appSecret = $appSecret;
-        $this->guzzle = ($guzzle ? $guzzle : new Client(["base_uri" => $this->baseUri]));
+        $this->guzzle = ($guzzle ? $guzzle : new Client(['base_uri' => $this->baseUri]));
     }
 
     /**
@@ -56,7 +57,7 @@ class ThreatExchange
      */
     public function getThreatExchangeMembers()
     {
-        return $this->call("threat_exchange_members", "GET");
+        return $this->call('threat_exchange_members', 'GET');
     }
 
     /**
@@ -64,14 +65,15 @@ class ThreatExchange
      *
      * @param string $type
      * @param string $query
-     * @param array $options
+     * @param array  $options
+     *
      * @return stdClass
      */
     public function getThreatIndicators($type, $query, $options = [])
     {
-        return $this->call("threat_indicators", "GET", array_replace_recursive([
-            "type" => $type,
-            "text" => $query,
+        return $this->call('threat_indicators', 'GET', array_replace_recursive([
+            'type' => $type,
+            'text' => $query,
         ], $options));
     }
 
@@ -80,14 +82,15 @@ class ThreatExchange
      *
      * @param string $type
      * @param string $query
-     * @param array $options
+     * @param array  $options
+     *
      * @return stdClass
      */
     public function getThreatDescriptors($type, $query, $options = [])
     {
-        return $this->call("threat_descriptors", "GET", array_replace_recursive([
-            "type" => $type,
-            "text" => $query,
+        return $this->call('threat_descriptors', 'GET', array_replace_recursive([
+            'type' => $type,
+            'text' => $query,
         ], $options));
     }
 
@@ -95,35 +98,38 @@ class ThreatExchange
      * Get the next page of results from a pagination URL obtained from a previous request.
      *
      * @param string $url
+     *
      * @return stdClass
      */
     public function next($url)
     {
-        return $this->call($url, "GET");
+        return $this->call($url, 'GET');
     }
 
     /**
      * Call a ThreatExchange or Graph API endpoint via GET.
      *
      * @param string $endpoint
-     * @param array $options
+     * @param array  $options
+     *
      * @return stdClass
      */
     public function get($endpoint, $options = [])
     {
-        return $this->call($endpoint, "GET", $options);
+        return $this->call($endpoint, 'GET', $options);
     }
 
     /**
      * Call a ThreatExchange or Graph API endpoint via POST.
      *
      * @param string $endpoint
-     * @param array $options
+     * @param array  $options
+     *
      * @return stdClass
      */
     public function post($endpoint, $options = [])
     {
-        return $this->call($endpoint, "POST", $options);
+        return $this->call($endpoint, 'POST', $options);
     }
 
     /**
@@ -131,13 +137,14 @@ class ThreatExchange
      *
      * @param string $endpoint
      * @param string $method
-     * @param array $options
+     * @param array  $options
+     *
      * @return stdClass
      */
     public function call($endpoint, $method, $options = [])
     {
         return json_decode($this->guzzle->{$method}($endpoint, [
-            (strtoupper($method) == "GET" ? "query" : "form_params") => array_replace_recursive($this->authParams(), $options)
+            (strtoupper($method) == 'GET' ? 'query' : 'form_params') => array_replace_recursive($this->authParams(), $options),
         ])->getBody());
     }
 
@@ -149,7 +156,7 @@ class ThreatExchange
     protected function authParams()
     {
         return [
-            "access_token" => $this->appId."|".$this->appSecret
+            'access_token' => $this->appId.'|'.$this->appSecret,
         ];
     }
 }
