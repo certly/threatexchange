@@ -103,7 +103,7 @@ class ThreatExchange
      */
     public function next($url)
     {
-        return $this->call($url, 'GET');
+        return $this->guzzle->get($url);
     }
 
     /**
