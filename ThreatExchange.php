@@ -103,7 +103,7 @@ class ThreatExchange
      */
     public function next($url)
     {
-        return $this->guzzle->get($url);
+        return json_decode($this->guzzle->get($url)->getBody());
     }
 
     /**
