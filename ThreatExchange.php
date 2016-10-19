@@ -32,7 +32,7 @@ class ThreatExchange
      *
      * @var string
      */
-    protected $baseUri = 'https://graph.facebook.com/v2.9/';
+    protected $baseUri = 'https://graph.facebook.com/v2.8/';
 
     /**
      * Create a new ThreatExchange client.
